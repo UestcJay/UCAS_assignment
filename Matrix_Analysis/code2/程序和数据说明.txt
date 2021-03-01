@@ -1,0 +1,229 @@
+环境为Python 3.7, 已在win10 Pycharm上运行通过，
+实验直接从同目录下的data.txt读取需要分解的矩阵A
+utlils.py实现显示打印矩阵和读取矩阵数据的功能
+LU.py是实现PLU分解
+QR.py是Gram-Schmidt实现QR分解
+Householder.py是Householder变换实现QR分解
+Givens.py是Givens变换实现QR分解
+URV.py是实现URV分解
+在终端可以直接运行 python main.py -m QR
+来实现QR分解,选择不同参数实现对应的分解
+LU->LU factorization, QR->Gram-Schmidt, 
+Householder->Householder Reduction, 
+GR->Givens Reduction, URV-> URV factorization!
+
+实验验证了以下数据：
+用于验证LU的矩阵：
+1 2 4 17
+3 6 -12 3
+2 3 -3 2
+0 2 -2 6
+用于验证QR的矩阵数据：
+1 19 -34
+-2 -5 20
+2 8 37
+用于验证Householder和Givens的数据：
+m=n
+1 19 -34
+-2 -5 20
+2 8 37
+m>n
+4 -3 4
+2 -14 -3
+-2 14 0
+1 -7 15
+m<n
+1 1 2
+1 2 1
+用于验证URV的数据：
+m>n=r
+4 -3 4
+2 -14 -3
+-2 14 0
+1 -7 15
+m=n>r
+1 2 4 17
+0 0 0 0
+2 3 -3 2
+0 2 -2 6
+
+以下列矩阵为例运行结果为：
+1 19 -34
+-2 -5 20
+2 8 37
+
+C:\Users\lkq82\Desktop\期末复习\矩阵分析\code>
+python main.py -m LU
+LU Factorization, the input should be a square matrix.
+
+==================================================
+origin matrix type: 3 * 4
+Origin Matrix A =
+       1.0,      19.0,     -34.0,       1.0
+
+      -2.0,      -5.0,      20.0,       2.0
+
+       2.0,       8.0,      37.0,       3.0
+
+
+
+The factorization is processing!
+
+L=
+       1.0,       0.0,       0.0
+
+      -0.5,       1.0,       0.0
+
+      -1.0,    0.1818,       1.0
+
+
+U=
+      -2.0,      -5.0,      20.0
+
+       0.0,      16.5,     -24.0
+
+       0.0,       0.0,    61.363
+
+
+P=
+       0.0,       1.0,       0.0
+
+       1.0,       0.0,       0.0
+
+       0.0,       0.0,       1.0
+
+
+
+C:\Users\lkq82\Desktop\期末复习\矩阵分析\code>
+python main.py -m QR
+==================================================
+origin matrix type: 3 * 3
+Origin Matrix A =
+       1.0,      19.0,     -34.0
+
+      -2.0,      -5.0,      20.0
+
+       2.0,       8.0,      37.0
+
+
+
+The factorization is processing!
+
+Q=
+    0.3333,    0.9333,    -0.133
+
+    -0.666,    0.3333,    0.6666
+
+    0.6666,    -0.133,    0.7333
+
+
+R=
+       3.0,      15.0,       0.0
+
+       0.0,      15.0,    -30.00
+
+       0.0,       0.0,      45.0
+
+
+
+C:\Users\lkq82\Desktop\期末复习\矩阵分析\code>
+python main.py -m Householder
+==================================================
+origin matrix type: 3 * 3
+Origin Matrix A =
+       1.0,      19.0,     -34.0
+
+      -2.0,      -5.0,      20.0
+
+       2.0,       8.0,      37.0
+
+
+
+The factorization is processing!
+
+Q=
+     0.333,     0.933,    -0.133
+
+    -0.667,     0.333,     0.667
+
+     0.667,    -0.133,     0.733
+
+
+R=
+       3.0,      15.0,       0.0
+
+      -0.0,      15.0,     -30.0
+
+       0.0,       0.0,      45.0
+
+
+
+C:\Users\lkq82\Desktop\期末复习\矩阵分析\code>
+python main.py -m Givens
+==================================================
+origin matrix type: 3 * 3
+Origin Matrix A =
+       1.0,      19.0,     -34.0
+
+      -2.0,      -5.0,      20.0
+
+       2.0,       8.0,      37.0
+
+
+
+The factorization is processing!
+
+Q=
+     0.333,     0.933,    -0.133
+
+    -0.667,     0.333,     0.667
+
+     0.667,    -0.133,     0.733
+
+
+R=
+       3.0,      15.0,      -0.0
+
+       0.0,      15.0,     -30.0
+
+       0.0,       0.0,      45.0
+
+
+
+C:\Users\lkq82\Desktop\期末复习\矩阵分析\code>
+python main.py -m URV
+==================================================
+origin matrix type: 3 * 3
+Origin Matrix A =
+       1.0,      19.0,     -34.0
+
+      -2.0,      -5.0,      20.0
+
+       2.0,       8.0,      37.0
+
+
+
+The factorization is processing!
+
+U=
+     0.333,     0.933,    -0.133
+
+    -0.667,     0.333,     0.667
+
+     0.667,    -0.133,     0.733
+
+
+R=
+    15.301,    -0.020,    -0.002
+
+    14.713,    30.117,    -0.014
+
+    0.0017,    -44.75,    4.4097
+
+
+V=
+     0.196,    -0.096,    -0.976
+
+     0.981,     0.019,     0.195
+
+       0.0,    -0.995,     0.098
